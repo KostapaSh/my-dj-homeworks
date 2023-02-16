@@ -10,5 +10,12 @@
 {% empty %}
     <p>Такого рецепта не знаю :(</p>
 {% endfor %}
+
+<form action='' method="get">
+    <label for="val">Укажите значение: </label>
+    <input id="val" type="text" name="servings" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
 </body>
 </html>
