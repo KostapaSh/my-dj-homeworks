@@ -5,9 +5,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, reverse
 
 
-
-
-def getrecipe(servings, dish) -> dict():
+def getrecipe(servings, my_dish) -> dict():
 
 
     DATA = {
@@ -35,10 +33,10 @@ def getrecipe(servings, dish) -> dict():
     }
 
     if servings != None:
-        for ket, val in DATA[dish].items():
+        for ket, val in DATA[my_dish].items():
             context['recipe'][ket] = val*int(servings)
     else:
-        for ket, val in DATA[dish].items():
+        for ket, val in DATA[my_dish].items():
             context['recipe'][ket] = val
 
     return context
@@ -58,28 +56,12 @@ def home_view(request):
     }
     return render(request, template_name, context)
 
+def dish_view (request, dish):
 
-def omlet(request):
-
-    dish = request.path_info.replace('/','')
+    #vv_dish = request.path_info.replace('/', '')
     servings = request.GET.get('servings')
 
-    return render(request, 'calculator/index.html', getrecipe(servings, dish))
-
-def pasta(request):
-
-    dish = request.path_info.replace('/','')
-    servings = request.GET.get('servings')
-
-    return render(request, 'calculator/index.html', getrecipe(servings, dish))
-
-def buter(request):
-
-    dish = request.path_info.replace('/','')
-    servings = request.GET.get('servings')
-
-    return render(request, 'calculator/index.html', getrecipe(servings, dish))
-
+    return render(request, 'calculator/index.html', getrecipe(servings,dish))
 
 
 
